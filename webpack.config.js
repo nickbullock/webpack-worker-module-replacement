@@ -15,7 +15,7 @@ const config = {
             filename: 'index.html'
         }),
         new webpack.NormalModuleReplacementPlugin(/MY_MODULE_PATH/, function(resource) {
-            if (resource.contextInfo.issuer.endsWith('worker.js')) {
+            if (resource.contextInfo.compiler === 'WorkerPluginLoader') {
                 resource.request = path.resolve(__dirname, 'moduleA.js')
             } else {
                 resource.request = path.resolve(__dirname, 'moduleB.js')
